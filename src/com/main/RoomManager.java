@@ -40,7 +40,7 @@ public class RoomManager extends JPanel {
 
 			@Override
 			public void mouseWheelMoved(MouseWheelEvent e) {
-				double step = 45.0d * Math.PI / 180.0d;
+				double step = 45.0d * Math.PI / 180.0d * Math.signum(e.getWheelRotation());
 				room.rotateSelected(step);
 				repaint();
 			}

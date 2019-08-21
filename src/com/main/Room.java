@@ -9,19 +9,17 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class Room {
-
 	private int realWidth, realHeight, width, height;
 	private float scale = 5.0f;
 	private boolean checkForFurnitureCollisions = false;
 	private boolean checkForBorderCollisions = false;
 	private boolean closetDoorsOpen = true;
+	private boolean doorOpen = false;
 	private Rectangle closedDoor, openDoor, window, closetDoors;
 	private ArrayList<Polygon> initialState, mobileFurniture;
 	private ArrayList<Color> furnitureColors;
 	private int furnitureSelected = -1;
 	private int px, py;
-
-	private boolean doorOpen = false;
 
 	public Room(int w, int h) {
 		realWidth = w;
@@ -132,12 +130,12 @@ public class Room {
 	}
 
 	public void press(int x, int y) {
-		
+
 		if (doorOpen)
 			doorOpen = !openDoor.contains(x, y);
 		else
 			doorOpen = closedDoor.contains(x, y);
-		
+
 		boolean clicked = false;
 		int i = mobileFurniture.size() - 1;
 
@@ -247,11 +245,10 @@ public class Room {
 			g2d.fill(openDoor);
 		else
 			g2d.fill(closedDoor);
-		if (!closetDoorsOpen)
-			return;
 
-		g2d.setColor(Color.DARK_GRAY);
-		g2d.fill(closetDoors);
+		if (closetDoorsOpen) {
+			g2d.setColor(Color.DARK_GRAY);
+			g2d.fill(closetDoors);
+		}
 	}
-
 }

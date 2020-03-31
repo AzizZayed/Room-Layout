@@ -90,19 +90,23 @@ public class RoomManager extends JPanel {
 
 	private void initRoom() {
 
-		int nObjects = 5;
+		int nObjects = 7;
 
 		float[][] x = { { 33.5f, 94.5f, 94.5f, 33.5f }, // bed
 				{ 95, 141.25f, 141.25f, 116.75f, 116.75f, 95 }, // desk
 				{ 120, 141.5f, 141.5f, 120 }, // shelf
-				{ 12.25f, 33, 33, 12.25f }, // bedside table
+				{ 12.25f, 33, 33, 12.25f }, // bedside table 1
+				{ 12.25f, 36, 36, 12.25f }, // bedside table 2
 				{ 0, 10, 10, 0 }, // lamp
+				{ 11.5f, 56.5f, 56.5f, 11.5f }, // board
 		};
 		float[][] y = { { 1, 1, 75, 75 }, // bed
 				{ 0.5f, 0.5f, 67, 67, 27.5f, 27.5f }, // desk
 				{ 120, 120, 158.5f, 158.5f }, // shelf
-				{ 4.5f, 4.5f, 21.5f, 21.5f }, // bedside table
+				{ 4.5f, 4.5f, 21.5f, 21.5f }, // bedside table 1
+				{ 4.5f, 4.5f, 20, 20 }, // bedside table 2
 				{ 0, 0, 10, 10 }, // lamp
+				{ 0, 0, 1, 1 }, // board
 		};
 
 		for (int i = 0; i < nObjects; i++) {

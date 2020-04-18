@@ -4,6 +4,7 @@ import java.awt.Color;
 import java.awt.Graphics2D;
 import java.awt.Polygon;
 import java.awt.Rectangle;
+import java.awt.RenderingHints;
 import java.awt.geom.AffineTransform;
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ import java.util.ArrayList;
  */
 public class Room {
 
-	private static final float ANGLE_STEP = (float) Math.toRadians(45.0f);
+	private static final float ANGLE_STEP = (float) Math.toRadians(5.0f);
 
 	private int width, height; // width and height of the room in pixels
 	private float scale = 5.0f; // scale from real world to pixels
@@ -228,7 +229,7 @@ public class Room {
 				}
 				i++;
 			}
-			
+
 			if (furnitureCollided)
 				poly.translate(-dx, -dy);
 		}
@@ -288,6 +289,8 @@ public class Room {
 	 * @param g2d - tool to draw 2D AWT Objects
 	 */
 	public void draw(Graphics2D g2d) {
+
+		g2d.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
 
 		AffineTransform old = g2d.getTransform();
 

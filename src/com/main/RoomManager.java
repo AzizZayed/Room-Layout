@@ -15,11 +15,20 @@ import java.awt.event.MouseWheelListener;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
+/**
+ * main class, manages room and adds components to room, draws it too
+ * 
+ * @author Zayed
+ *
+ */
 public class RoomManager extends JPanel {
 
 	private static final long serialVersionUID = 1L;
 	private Room room;
 
+	/**
+	 * constructor
+	 */
 	public RoomManager() {
 
 		int roomW = 142;
@@ -40,8 +49,7 @@ public class RoomManager extends JPanel {
 
 			@Override
 			public void mouseWheelMoved(MouseWheelEvent e) {
-				double step = 45.0d * Math.PI / 180.0d * Math.signum(e.getWheelRotation());
-				room.rotateSelected(step);
+				room.rotateSelected(Math.signum(e.getWheelRotation()));
 				repaint();
 			}
 
@@ -88,34 +96,33 @@ public class RoomManager extends JPanel {
 		});
 	}
 
+	/**
+	 * setup the room
+	 */
 	private void initRoom() {
-
-		int nObjects = 7;
 
 		float[][] x = { { 33.5f, 94.5f, 94.5f, 33.5f }, // bed
 				{ 95, 141.25f, 141.25f, 116.75f, 116.75f, 95 }, // desk
 				{ 120, 141.5f, 141.5f, 120 }, // shelf
-				{ 12.25f, 33, 33, 12.25f }, // bedside table 1
-				{ 12.25f, 36, 36, 12.25f }, // bedside table 2
+				{ 12.25f, 33, 33, 12.25f }, // bedside table
 				{ 0, 10, 10, 0 }, // lamp
-				{ 11.5f, 56.5f, 56.5f, 11.5f }, // board
 		};
 		float[][] y = { { 1, 1, 75, 75 }, // bed
 				{ 0.5f, 0.5f, 67, 67, 27.5f, 27.5f }, // desk
 				{ 120, 120, 158.5f, 158.5f }, // shelf
-				{ 4.5f, 4.5f, 21.5f, 21.5f }, // bedside table 1
-				{ 4.5f, 4.5f, 20, 20 }, // bedside table 2
+				{ 4.5f, 4.5f, 21.5f, 21.5f }, // bedside table
 				{ 0, 0, 10, 10 }, // lamp
-				{ 0, 0, 1, 1 }, // board
 		};
+		
+		int nObjects = x.length;
 
 		for (int i = 0; i < nObjects; i++) {
-			room.addFurniture(x[i], y[i], x[i].length);
+			room.addFurniture(x[i], y[i]);
 		}
 
 		room.addClosedDoor(0, 123.5f, 1, 36.5f);
 		room.addOpenDoor(0, 154f, 30, 1);
-		room.addWindow(141f, 51.25f, 1, 59);
+		room.addWindow(140f, 51.25f, 2, 59);
 		room.addClosetDoors(0, 16.75f, 11, 60);
 	}
 
@@ -125,11 +132,18 @@ public class RoomManager extends JPanel {
 		room.draw((Graphics2D) g);
 	}
 
+	/**
+	 * draw the background
+	 * @param g - tool to draw
+	 */
 	private void drawBackground(Graphics g) {
 		g.setColor(Color.BLACK);
 		g.fillRect(0, 0, room.getWidth(), room.getHeight());
 	}
 
+	/**
+	 * main method
+	 */
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("My Room");
 		RoomManager roomManager = new RoomManager();
